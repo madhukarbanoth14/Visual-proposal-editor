@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-card: var(--card);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --font-heading: var(--font-cormorant);
+  --font-body: var(--font-inter);
+}
+
+:root {
+  --background: #faf9f7;
+  --foreground: #1a1a1a;
+  --muted: #f0ede8;
+  --muted-foreground: #6b6560;
+  --border: #e8e4de;
+  --accent: #c9a962;
+  --accent-foreground: #1a1a1a;
+  --card: #ffffff;
+  --primary: #1a1a1a;
+  --primary-foreground: #faf9f7;
+  --success: #2d6a4f;
+  --warning: #b8860b;
+  --danger: #9b2226;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-cormorant), Georgia, serif;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--primary);
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slide-in {
+  from { opacity: 0; transform: translateX(-12px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out forwards;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out forwards;
+}
+
+.proposal-scroll::-webkit-scrollbar {
+  width: 4px;
+}
+
+.proposal-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.proposal-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 2px;
+}
+
+input, textarea, select {
+  font-family: inherit;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+}
+
+.proposal-theme-luxury {
+  --theme-bg: #faf9f7;
+  --theme-text: #1a1a1a;
+  --theme-accent: #c9a962;
+}
+
+.proposal-theme-editorial {
+  --theme-bg: #ffffff;
+  --theme-text: #111111;
+  --theme-accent: #e63946;
+}
+
+.proposal-theme-classic {
+  --theme-bg: #f5f0eb;
+  --theme-text: #2c2416;
+  --theme-accent: #8b7355;
+}
+
+.proposal-theme-modern {
+  --theme-bg: #ffffff;
+  --theme-text: #0a0a0a;
+  --theme-accent: #2563eb;
+}
+
+.proposal-theme-minimal {
+  --theme-bg: #ffffff;
+  --theme-text: #333333;
+  --theme-accent: #666666;
+}
+
+.proposal-theme-traditional {
+  --theme-bg: #fff8f0;
+  --theme-text: #3d2914;
+  --theme-accent: #b8860b;
+}

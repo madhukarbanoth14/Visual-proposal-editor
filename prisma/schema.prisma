@@ -1,0 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Quotation {
+  id              String   @id @default(cuid())
+  quotationNumber String   @unique
+  status          String   @default("draft")
+  version         Int      @default(1)
+  parentId        String?
+  data            String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+  sentAt          DateTime?
+  viewedAt        DateTime?
+  acceptedAt      DateTime?
+}
+
+model ServiceTemplate {
+  id                   String  @id @default(cuid())
+  name                 String
+  category             String
+  description          String  @default("")
+  image                String?
+  unit                 String  @default("unit")
+  defaultPrice         Float   @default(0)
+  defaultDeliverables  String  @default("[]")
+  active               Boolean @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
+}
+
+model DeliverableTemplate {
+  id          String  @id @default(cuid())
+  name        String
+  description String  @default("")
+  image       String?
+  category    String  @default("general")
+  active      Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model AlbumTemplate {
+  id          String  @id @default(cuid())
+  name        String
+  albumType   String  @default("standard")
+  description String  @default("")
+  image       String?
+  size        String  @default("")
+  sheets      Int     @default(0)
+  defaultPrice Float  @default(0)
+  active      Boolean @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TermTemplate {
+  id        String   @id @default(cuid())
+  title     String
+  content   String
+  category  String   @default("other")
+  sortOrder Int      @default(0)
+  isDefault Boolean  @default(true)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BrandSettings {
+  id             String   @id @default("default")
+  companyName    String   @default("")
+  tagline        String   @default("")
+  phone          String   @default("")
+  email          String   @default("")
+  website        String   @default("")
+  instagram      String   @default("")
+  logo           String?
+  primaryColor   String   @default("#1a1a1a")
+  secondaryColor String   @default("#8b7355")
+  accentColor    String   @default("#c9a962")
+  fontHeading    String   @default("Cormorant Garamond")
+  fontBody       String   @default("Inter")
+  updatedAt      DateTime @updatedAt
+}

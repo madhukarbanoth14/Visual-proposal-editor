@@ -8,7 +8,7 @@ import {
   createSampleQuotationData,
 } from "./seed-data";
 import type { QuotationStatus } from "@/types/quotation";
-import { calculatePricing } from "./pricing";
+import { calculatePricing, calculatePaymentAmounts } from "./pricing";
 import { generateId, generateQuotationNumber } from "./utils";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
@@ -100,6 +100,14 @@ export function serializeQuotation(record: {
     pricing.total = data._pricingOverride;
     pricing.subtotal = Math.round(data._pricingOverride / (1 + (data.tax?.rate || 0) / 100));
     pricing.taxAmount = data._pricingOverride - pricing.subtotal;
+  }
+
+  const paymentAmounts = calculatePaymentAmounts(pricing.total, data.paymentSchedule || []);
+  if (data.paymentSchedule) {
+    data.paymentSchedule = data.paymentSchedule.map((m: { id: string; percentage: number }) => ({
+      ...m,
+      amount: paymentAmounts.find((p) => p.id === m.id)?.amount ?? m.amount,
+    }));
   }
 
   return {

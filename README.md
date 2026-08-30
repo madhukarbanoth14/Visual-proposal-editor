@@ -1,5 +1,7 @@
 # Propose — Visual Proposal Builder
 
+Repository: [github.com/madhukarbanoth14/Visual-proposal-editor](https://github.com/madhukarbanoth14/Visual-proposal-editor)
+
 A production-ready, premium dynamic Quotation / Proposal Builder for wedding photography and videography businesses (and other service businesses).
 
 ## Features
@@ -28,10 +30,13 @@ A production-ready, premium dynamic Quotation / Proposal Builder for wedding pho
 ## Getting Started
 
 ```bash
-cd proposal-builder
+git clone https://github.com/madhukarbanoth14/Visual-proposal-editor.git
+cd Visual-proposal-editor
 npm install
+cp .env.example .env
 npm run db:push
 npm run dev
+npm run test:app   # optional: run 22 smoke tests
 ```
 
 Open [http://localhost:3000](http://localhost:3000)

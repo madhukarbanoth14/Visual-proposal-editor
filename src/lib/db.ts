@@ -104,9 +104,9 @@ export function serializeQuotation(record: {
 
   const paymentAmounts = calculatePaymentAmounts(pricing.total, data.paymentSchedule || []);
   if (data.paymentSchedule) {
-    data.paymentSchedule = data.paymentSchedule.map((m: { id: string; percentage: number }) => ({
+    data.paymentSchedule = data.paymentSchedule.map((m: { id: string; percentage: number; amount?: number }) => ({
       ...m,
-      amount: paymentAmounts.find((p) => p.id === m.id)?.amount ?? m.amount,
+      amount: paymentAmounts.find((p) => p.id === m.id)?.amount ?? m.amount ?? 0,
     }));
   }
 
